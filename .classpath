@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="lib" path="C:/android/workspace/google-play-services_lib/libs/google-play-services.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.3.jar"/>
+	<classpathentry kind="lib" path="libs/spring-android-auth-1.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-android-core-1.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-android-rest-template-1.0.1.RELEASE.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/FacebookSDK"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK/FacebookSDK"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

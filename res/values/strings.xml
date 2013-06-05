@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">cityDeals</string>
+    <string name="app_id">199755466840805</string>
+    <string name="action_settings">Settings</string>
+    <string name="valid_until">Angebot gilt noch:</string>
+    <string name="getDeals">get the Deals</string>    
+    <string name="myCity">meine Stadt:</string>
+    <string name="myCategory">meine Kategorien:</string>       
+    <string name="categoryFoodDrink">Essen und Trinken</string>    
+    <string name="categoryService">Dienstleistungen</string>    
+    <string name="categoryShopping">Einkaufen</string>    
+    <string name="categoryCarTransport">Auto und Verkehr</string>
+    <string name="categoryRecreation">Freizeit</string>
+    <string name="desc"> </string>
+    <string name="settings">Einstellungen</string>
+    <string name="map">Karte</string>
+    <string name="route">Route</string>
+    <string name="comment">Kommentar erstellen</string>
+    <string name="fbShare">FB Teilen</string>
+    <string name="shareDeal">Deal auf Facebook teilen</string>
+    <string name="login">Anmeldedaten für Community</string>  
+    <string name="username">Benutzername</string>  
+    <string name="password">Passwort</string>    
+    <string name="availability">Verfügbarkeit</string>      
+    <string name="availabilityOf">von</string>         
+    <string name="barcode">Barcode</string>           
+    <string name="blank_string">XXX</string>    
+</resources>

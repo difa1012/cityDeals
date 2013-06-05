@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/rectimageBG"
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/blank_string"
+            android:padding="1dp"
+            android:src="@drawable/rectangle_bg" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/rectimageBG"
+            android:layout_alignLeft="@+id/rectimageBG"
+            android:layout_alignTop="@+id/rectimageBG"
+            android:layout_margin="6dp"
+            android:text="@string/valid_until"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView1"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_toRightOf="@+id/textView1"
+            android:text="@string/blank_string"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textViewHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/rectimageBG"
+            android:paddingLeft="2dp"
+            android:text="@string/blank_string"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textViewSubHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/textViewHeadline"
+            android:paddingLeft="2dp"
+            android:text="@string/blank_string"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View 
+            android:background="#808080" 
+            android:layout_width = "fill_parent" 
+            android:layout_height="1dip" 
+            android:layout_centerVertical ="true" 
+            android:layout_above="@+id/imageViewBigPicture" />
+        
+        <ImageView
+            android:id="@+id/imageViewBigPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewSubHeadline"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/blank_string"
+            android:src="@drawable/blank" />
+        
+         <View 
+            android:background="#808080" 
+            android:layout_width = "fill_parent" 
+            android:layout_height="1dip" 
+            android:layout_centerVertical ="true" 
+            android:layout_below="@+id/imageViewBigPicture" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/imageViewBigPicture"
+            android:layout_margin="4dp"
+            android:layout_marginTop="22dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textViewAvailability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/textViewDescription"
+            android:layout_margin="4dp"
+            android:text="@string/availability" />
+
+        <TextView
+            android:id="@+id/textViewRemainingDeals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDescription"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@+id/textViewAvailability"
+            android:text="@string/blank_string" />
+
+        <TextView
+            android:id="@+id/textViewAvailabilityOf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDescription"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@+id/textViewRemainingDeals"
+            android:text="@string/availabilityOf" />
+
+        <TextView
+            android:id="@+id/textViewNumberOfDeals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDescription"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@+id/textViewAvailabilityOf"
+            android:text="@string/blank_string" />
+
+        <Button
+            android:id="@+id/buttonComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/textViewAvailability"
+            android:layout_marginTop="4dp"
+            android:text="@string/comment" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDescription"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@+id/textViewNumberOfDeals" />
+
+        <com.facebook.widget.LoginButton
+            android:id="@+id/loginFacebookButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonComment"
+            android:layout_alignLeft="@+id/textView1"
+            android:text="@string/blank_string" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/buttonComment"
+            android:text="@string/shareDeal" />
+
+    </RelativeLayout>
+
+</ScrollView>

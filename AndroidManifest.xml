@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.citydeals"
+    android:versionCode="1"
+    android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="16" />
+    <permission
+        android:name="com.citydeals.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> 
+    <uses-permission android:name="com.citydeals.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+   	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+   	<uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name="CityDealsApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppBaseTheme"
+        android:debuggable="true">
+        <activity android:name="com.citydeals.ui.StartPage" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />                
+            </intent-filter>
+            </activity>
+        <activity android:name="com.citydeals.ui.DealDetail" android:label="@string/app_name" ></activity>
+        <activity android:name="com.citydeals.ui.Deals" android:label="@string/app_name" ></activity>
+        <activity android:name="com.citydeals.ui.SettingsPage" android:label="@string/settings"></activity>
+        <activity android:name="com.citydeals.ui.MapTest"></activity>
+        <activity android:name="com.citydeals.ui.DealDetailTab" android:label="@string/app_name"></activity> 
+        <activity android:name="com.citydeals.ui.ShopPage" android:label="@string/app_name"></activity>   
+        <activity android:name="com.citydeals.ui.BarcodeEAN" android:label="@string/app_name"></activity>   
+        <activity android:name="com.citydeals.ui.BarcodeQR" android:label="@string/app_name"></activity>   
+        <activity android:name="com.citydeals.ui.BarcodeTab" android:label="@string/app_name"></activity>               
+        <activity android:name="com.citydeals.ui.LoginUsingActivityActivity"></activity>
+        <activity android:name="com.facebook.LoginActivity" android:label="@string/app_name" />
+        <meta-data
+		    android:name="com.google.android.maps.v2.API_KEY"
+		    android:value="AIzaSyDM1kpxmSSwxk0hgpz6YBHnTqCzB9BO1ng"/>
+        <meta-data android:value="@string/app_id" android:name="com.facebook.sdk.ApplicationId"/>
+ 
+    </application>
+        <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+</manifest>
