@@ -246,6 +246,7 @@ public class DealDetail extends Activity {
             postParams.putString("link", "https://developers.facebook.com/android");
             postParams.putString("picture", "https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png");
 
+
             Request.Callback callback= new Request.Callback() {
                 public void onCompleted(Response response) {
                     JSONObject graphResponse = response
