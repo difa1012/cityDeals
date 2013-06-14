@@ -1,6 +1,7 @@
 package com.citydeals.ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class DealDetail extends Activity {
     private LoginButton loginFacebookButton;
     private String headline;
     private String subheadline;
-    List<String> PERMISSIONS = new ArrayList<String>();
+    private static final List<String> PERMISSIONS = Arrays.asList("publish_actions");
     Boolean pendingPublishReauthorization;
 
 	protected ProgressBar progressBar;
@@ -109,7 +110,6 @@ public class DealDetail extends Activity {
                 session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
             }
         }
-        
         
         loginFacebookButton = (LoginButton) findViewById(R.id.loginFacebookButton);
         
