@@ -236,6 +236,9 @@ public class DealDetail extends Activity {
                 Session.NewPermissionsRequest newPermissionsRequest = new Session
                         .NewPermissionsRequest(this, PERMISSIONS);
             session.requestNewPublishPermissions(newPermissionsRequest);
+            Toast.makeText(getApplicationContext(), 
+                    "Nach Bestätigung der Rechte bitte erneut teilen.",
+                    Toast.LENGTH_LONG).show();
                 return;
             }
 
