@@ -40,14 +40,15 @@ import com.facebook.Settings;
 import com.facebook.widget.LoginButton;
 
 public class DealDetail extends Activity {
-	
+
 	private Session.StatusCallback statusCallback = new SessionStatusCallback();
-    private Button share;
-    private LoginButton loginFacebookButton;
-    private String headline;
-    private String subheadline;
-    private static final List<String> PERMISSIONS = Arrays.asList("publish_actions");
-    Boolean pendingPublishReauthorization;
+	private Button share;
+	private LoginButton loginFacebookButton;
+	private String headline;
+	private String subheadline;
+	private static final List<String> PERMISSIONS = Arrays
+			.asList("publish_actions");
+	Boolean pendingPublishReauthorization;
 
 	protected ProgressBar progressBar;
 	protected Deal d;
@@ -77,7 +78,7 @@ public class DealDetail extends Activity {
 		} else {
 			showAvailability(d.getClaimeddeals(), d.getAvailability());
 		}
-		
+
 		textViewDesc.setText(d.getDescription());
 		textViewHeadline.setText(headline);
 		textViewSubHeadline.setText(subheadline);
@@ -93,36 +94,39 @@ public class DealDetail extends Activity {
 			d.setImage(img);
 		}
 		setImageByCategory(category, d);
-		
-// <--------------------FB related Code ---------------------------------------------->
+
+		// <--------------------FB related Code
+		// ---------------------------------------------->
 		Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
-        
-        Session session = Session.getActiveSession();
-        if (session == null) {
-            if (savedInstanceState != null) {
-                session = Session.restoreSession(this, null, statusCallback, savedInstanceState);
-            }
-            if (session == null) {
-                session = new Session(this);
-            }
-            Session.setActiveSession(session);
-            if (session.getState().equals(SessionState.CREATED_TOKEN_LOADED)) {
-                session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
-            }
-        }
-        
-        loginFacebookButton = (LoginButton) findViewById(R.id.loginFacebookButton);
-        
-        share = (Button) findViewById(R.id.button1);
-        share.setOnClickListener(new OnClickListener() {
-			
+
+		Session session = Session.getActiveSession();
+		if (session == null) {
+			if (savedInstanceState != null) {
+				session = Session.restoreSession(this, null, statusCallback,
+						savedInstanceState);
+			}
+			if (session == null) {
+				session = new Session(this);
+			}
+			Session.setActiveSession(session);
+			if (session.getState().equals(SessionState.CREATED_TOKEN_LOADED)) {
+				session.openForRead(new Session.OpenRequest(this)
+						.setCallback(statusCallback));
+			}
+		}
+
+		loginFacebookButton = (LoginButton) findViewById(R.id.loginFacebookButton);
+
+		share = (Button) findViewById(R.id.button1);
+		share.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				publishStory();
 			}
 		});
 
-        updateView();
+		updateView();
 	}
 
 	private void setImageByCategory(String category, Deal d) {
@@ -185,120 +189,130 @@ public class DealDetail extends Activity {
 		getMenuInflater().inflate(R.menu.deal_detail, menu);
 		return true;
 	}
-	
-	// <--------------------FB related Code ---------------------------------------------->
-	
-    @Override
-    public void onStart() {
-        super.onStart();
-        Session.getActiveSession().addCallback(statusCallback);
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        Session.getActiveSession().removeCallback(statusCallback);
-    }
-    
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-    }
+	// <--------------------FB related Code
+	// ---------------------------------------------->
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Session session = Session.getActiveSession();
-        Session.saveSession(session, outState);
-    }
+	@Override
+	public void onStart() {
+		super.onStart();
+		Session.getActiveSession().addCallback(statusCallback);
+	}
 
-    private void updateView() {
+	@Override
+	public void onStop() {
+		super.onStop();
+		Session.getActiveSession().removeCallback(statusCallback);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Session.getActiveSession().onActivityResult(this, requestCode,
+				resultCode, data);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		Session session = Session.getActiveSession();
+		Session.saveSession(session, outState);
+	}
+
+	private void updateView() {
         Session session = Session.getActiveSession();
         if (session.isOpened()) {
         	share.setVisibility(View.VISIBLE);
         	loginFacebookButton.setVisibility(View.INVISIBLE);
+        	
+                // Check for publish permissions    
+                List<String> permissions = session.getPermissions();
+                if (!isSubsetOf(PERMISSIONS, permissions)) {
+                    pendingPublishReauthorization = true;
+                    Session.NewPermissionsRequest newPermissionsRequest = new Session
+                            .NewPermissionsRequest(this, PERMISSIONS);
+                session.requestNewPublishPermissions(newPermissionsRequest);
+                }
         } else {
         	share.setVisibility(View.INVISIBLE);
         	loginFacebookButton.setVisibility(View.VISIBLE);
         }
     }
 
-    private void publishStory() {
-        Session session = Session.getActiveSession();
+	private void publishStory() {
+		Session session = Session.getActiveSession();
 
-        if (session != null){
+		if (session != null) {
 
-            // Check for publish permissions    
-            List<String> permissions = session.getPermissions();
-            if (!isSubsetOf(PERMISSIONS, permissions)) {
-                pendingPublishReauthorization = true;
-                Session.NewPermissionsRequest newPermissionsRequest = new Session
-                        .NewPermissionsRequest(this, PERMISSIONS);
-            session.requestNewPublishPermissions(newPermissionsRequest);
-            Toast.makeText(getApplicationContext(), 
-                    "Nach Bestätigung der Rechte bitte erneut teilen.",
-                    Toast.LENGTH_LONG).show();
-                return;
-            }
+			// Check for publish permissions
+			List<String> permissions = session.getPermissions();
+			if (!isSubsetOf(PERMISSIONS, permissions)) {
+				pendingPublishReauthorization = true;
+				Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(
+						this, PERMISSIONS);
+				session.requestNewPublishPermissions(newPermissionsRequest);
+				return;
+			}
 
-            Bundle postParams = new Bundle();
-            postParams.putString("name", headline);
-            postParams.putString("caption", subheadline);
-            postParams.putString("description", d.getDescription());
-            postParams.putString("link", "https://developers.facebook.com/android");
-            postParams.putString("picture", "https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png");
+			Bundle postParams = new Bundle();
+			postParams.putString("name", headline);
+			postParams.putString("caption", subheadline);
+			postParams.putString("description", d.getDescription());
+			postParams.putString("link",
+					"https://developers.facebook.com/android");
+			postParams
+					.putString("picture",
+							"https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png");
 
+			Request.Callback callback = new Request.Callback() {
+				public void onCompleted(Response response) {
+					JSONObject graphResponse = response.getGraphObject()
+							.getInnerJSONObject();
+					String postId = null;
+					try {
+						postId = graphResponse.getString("id");
+					} catch (JSONException e) {
+						Log.i("Error", "JSON error " + e.getMessage());
+					}
+					FacebookRequestError error = response.getError();
+					if (error != null) {
+						Toast.makeText(getApplicationContext(),
+								error.getErrorMessage(), Toast.LENGTH_SHORT)
+								.show();
+					} else {
+						Toast.makeText(
+								getApplicationContext(),
+								"Der Deal wurde erfolgreich auf Facebook geteilt.",
+								Toast.LENGTH_LONG).show();
+					}
+				}
+			};
 
-            Request.Callback callback= new Request.Callback() {
-                public void onCompleted(Response response) {
-                    JSONObject graphResponse = response
-                                               .getGraphObject()
-                                               .getInnerJSONObject();
-                    String postId = null;
-                    try {
-                        postId = graphResponse.getString("id");
-                    } catch (JSONException e) {
-                        Log.i("Error",
-                            "JSON error "+ e.getMessage());
-                    }
-                    FacebookRequestError error = response.getError();
-                    if (error != null) {
-                        Toast.makeText(getApplicationContext(),
-                             error.getErrorMessage(),
-                             Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), 
-                                 "Der Deal wurde erfolgreich auf Facebook geteilt.",
-                                 Toast.LENGTH_LONG).show();
-                    }
-                }
-            };
+			Request request = new Request(session, "me/feed", postParams,
+					HttpMethod.POST, callback);
 
-            Request request = new Request(session, "me/feed", postParams, 
-                                  HttpMethod.POST, callback);
+			RequestAsyncTask task = new RequestAsyncTask(request);
+			task.execute();
+		}
 
-            RequestAsyncTask task = new RequestAsyncTask(request);
-            task.execute();
-        }
+	}
 
-    }
-    
-    private boolean isSubsetOf(Collection<String> subset, Collection<String> superset) {
-        for (String string : subset) {
-            if (!superset.contains(string)) {
-                return false;
-            }
-        }
-        return true;
-    }
-	
+	private boolean isSubsetOf(Collection<String> subset,
+			Collection<String> superset) {
+		for (String string : subset) {
+			if (!superset.contains(string)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    private class SessionStatusCallback implements Session.StatusCallback {
-        @Override
-        public void call(Session session, SessionState state, Exception exception) {
-            updateView();
-        }
-    }
+	private class SessionStatusCallback implements Session.StatusCallback {
+		@Override
+		public void call(Session session, SessionState state,
+				Exception exception) {
+			updateView();
+		}
+	}
 
 }
