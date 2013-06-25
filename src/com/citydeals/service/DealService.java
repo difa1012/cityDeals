@@ -89,6 +89,18 @@ public class DealService extends HTTPReq {
         
 		return rating;
 	}
+	
+	public static Deal getTopDeal(String city) {
+    	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    	StrictMode.setThreadPolicy(policy); 
+    	
+        RestTemplate rest = new RestTemplate();
+        
+        final String url = BASE_URL + "/topdeal/bycity/{city}";
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+        rest.getMessageConverters().add(new GsonHttpMessageConverter(gson));
+        return rest.getForObject(url,Deal.class, city);  		
+	}
     
     
     private static class DealContainer {

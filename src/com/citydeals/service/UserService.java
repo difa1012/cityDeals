@@ -58,4 +58,27 @@ public class UserService extends HTTPReq {
 		
 		return false;
 		}
+	
+	public static boolean checkUser(String mail, String pw) {
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);	
+		
+		boolean b = false;
+		
+		try {
+			RestTemplate rest = new RestTemplate(); 
+			
+			final String url = BASE_URL + "/login/" + mail + "/" + pw;	
+			rest.getMessageConverters().add(new StringHttpMessageConverter());
+	        try {
+	        	b = Boolean.parseBoolean(rest.getForObject(url, String.class));  
+	        } catch (Exception e) {
+	        	
+	        } 
+		} catch (Exception e) { 
+			return false; 	
+		}
+		
+		return b;	
+	}
 }

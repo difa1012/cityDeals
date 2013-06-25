@@ -42,17 +42,15 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="5dp"
-        android:text="@string/categoryFoodDrink"
-        android:onClick="onClickFoodDrink"/>
-    
+        android:text="@string/categoryFoodDrink" />
+
     <CheckBox
         android:id="@+id/checkBoxService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxFoodDrink"
         android:layout_below="@+id/checkBoxFoodDrink"       
-        android:text="@string/categoryService"
-        android:onClick="onClickService"/>
+        android:text="@string/categoryService" />
 
     <CheckBox
         android:id="@+id/checkBoxShopping"
@@ -60,8 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxService"
         android:layout_below="@+id/checkBoxService"
-        android:text="@string/categoryShopping"
-        android:onClick="onClickShopping"/>
+        android:text="@string/categoryShopping" />
 
     <CheckBox
         android:id="@+id/checkBoxCarTransport"
@@ -69,8 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxShopping"
         android:layout_below="@+id/checkBoxShopping"
-        android:text="@string/categoryCarTransport"
-        android:onClick="onClickCarTransport"/>
+        android:text="@string/categoryCarTransport" />
     
     <CheckBox
         android:id="@+id/CheckBoxRecreation"
@@ -78,8 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxCarTransport"
         android:layout_below="@+id/checkBoxCarTransport"
-        android:text="@string/categoryRecreation"
-        android:onClick="onClickRecreation"/>
+        android:text="@string/categoryRecreation" />
     
     <TextView
         android:id="@+id/textViewLogin"
@@ -107,9 +102,7 @@
         android:layout_alignLeft="@+id/textViewLogin"
         android:layout_below="@+id/textViewUser"
         android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:singleLine="true" />
+        android:ems="10" />
         
     <TextView
         android:id="@+id/textViewPassword"
@@ -131,5 +124,29 @@
         android:ems="10"
         android:singleLine="true"
         android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/editTextUser"
+        android:text="Logout" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textViewLogin"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textViewUser"
+        android:text="Anmelden" />
 
 </RelativeLayout>
