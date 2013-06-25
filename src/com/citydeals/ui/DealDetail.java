@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.citydeals.CityDealsApplication;
 import com.citydeals.Deal;
 import com.citydeals.R;
 import com.citydeals.service.DealService;
@@ -40,7 +41,6 @@ import com.facebook.Settings;
 import com.facebook.widget.LoginButton;
 
 public class DealDetail extends Activity {
-
 	private Session.StatusCallback statusCallback = new SessionStatusCallback();
 	private Button share;
 	private LoginButton loginFacebookButton;
@@ -64,6 +64,8 @@ public class DealDetail extends Activity {
 		TextView textViewSubHeadline = (TextView) findViewById(R.id.textViewSubHeadline);
 		TextView textViewDesc = (TextView) findViewById(R.id.textViewDescription);
 		TextView textViewValid = (TextView) findViewById(R.id.textView2);
+		
+		Button buttonComm = (Button) findViewById(R.id.buttonComment);
 
 		// get variable from previous activity
 		Bundle extras = getIntent().getExtras();
@@ -78,7 +80,6 @@ public class DealDetail extends Activity {
 		} else {
 			showAvailability(d.getClaimeddeals(), d.getAvailability());
 		}
-
 		textViewDesc.setText(d.getDescription());
 		textViewHeadline.setText(headline);
 		textViewSubHeadline.setText(subheadline);
@@ -127,6 +128,29 @@ public class DealDetail extends Activity {
 		});
 
 		updateView();
+		
+		buttonComm.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	CityDealsApplication application = (CityDealsApplication) getApplication();
+            	String user = application.getUser();
+            	String pw = application.getPassword();
+            	
+        		if(!user.isEmpty() && !pw.isEmpty()) {  
+        		    Intent intent = new Intent(getApplicationContext(), New_comment.class);
+        		    Deal deal = new Deal();
+        		    deal = d;
+        		    deal.setImage(null);
+        		    intent.putExtra("deal", deal);
+        		    //startActivity(intent); 
+        		    
+        		    startActivityForResult(intent,0);
+        		} else {
+        			Toast.makeText(getApplicationContext(), "Login erfolderlich", Toast.LENGTH_LONG).show();
+        		    Intent intent = new Intent(getApplicationContext(), SettingsPage.class);
+        		    startActivity(intent);    			      			
+        		}
+            	
+            }});	
 	}
 
 	private void setImageByCategory(String category, Deal d) {

@@ -1,6 +1,5 @@
 package com.citydeals.ui;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import android.content.Context;

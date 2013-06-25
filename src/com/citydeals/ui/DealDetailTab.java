@@ -45,9 +45,17 @@ public class DealDetailTab extends TabActivity {
 		shopIntent.putExtras(extras);
 		shopPage.setContent(shopIntent);
 		
+		// Tab Comment
+		TabSpec commentPage = tabHost.newTabSpec("Kommentare");
+		commentPage.setIndicator("Meinung");
+		Intent commentIntent = new Intent(this, Comments.class);
+		commentIntent.putExtras(extras);
+		commentPage.setContent(commentIntent);
+		
 		
 		tabHost.addTab(dealPage);
 		tabHost.addTab(shopPage);
+		tabHost.addTab(commentPage);
 		
 	}
 
