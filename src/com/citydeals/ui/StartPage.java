@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class StartPage extends Activity {
 				android.R.layout.simple_dropdown_item_1line, cities);
 
 		textViewCity.setAdapter(adapter);
+		textViewCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		
 		// enable DropDown if manual user input
 		textViewCity.setOnTouchListener(new OnTouchListener() {
