@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.inputmethod.EditorInfo;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -49,6 +50,9 @@ public class SettingsPage extends Activity {
 		EditText editUser = (EditText) findViewById(R.id.editTextUser);
 		EditText editPassword = (EditText) findViewById(R.id.editTextPassword);
 		
+		textViewCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
+		editUser.setImeOptions(EditorInfo.IME_ACTION_DONE);
+		editPassword.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		textViewCity.setAdapter(adapter);
 		
 		textViewCity.setOnTouchListener(new OnTouchListener() {

@@ -35,22 +35,24 @@
         android:layout_marginTop="5dp"
         android:text="@string/myCategory" />
 
-    <CheckBox
+   <CheckBox
         android:id="@+id/checkBoxFoodDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="5dp"
-        android:text="@string/categoryFoodDrink" />
-
+        android:text="@string/categoryFoodDrink"
+        android:onClick="onClickFoodDrink"/>
+    
     <CheckBox
         android:id="@+id/checkBoxService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxFoodDrink"
         android:layout_below="@+id/checkBoxFoodDrink"       
-        android:text="@string/categoryService" />
+        android:text="@string/categoryService"
+        android:onClick="onClickService"/>
 
     <CheckBox
         android:id="@+id/checkBoxShopping"
@@ -58,7 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxService"
         android:layout_below="@+id/checkBoxService"
-        android:text="@string/categoryShopping" />
+        android:text="@string/categoryShopping"
+        android:onClick="onClickShopping"/>
 
     <CheckBox
         android:id="@+id/checkBoxCarTransport"
@@ -66,7 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxShopping"
         android:layout_below="@+id/checkBoxShopping"
-        android:text="@string/categoryCarTransport" />
+        android:text="@string/categoryCarTransport"
+        android:onClick="onClickCarTransport"/>
     
     <CheckBox
         android:id="@+id/CheckBoxRecreation"
@@ -74,7 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBoxCarTransport"
         android:layout_below="@+id/checkBoxCarTransport"
-        android:text="@string/categoryRecreation" />
+        android:text="@string/categoryRecreation"
+        android:onClick="onClickRecreation"/>
     
     <TextView
         android:id="@+id/textViewLogin"
