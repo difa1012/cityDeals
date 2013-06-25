@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+
+    <TextView
+        android:id="@+id/textViewTDHeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:text="@string/blank_string"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewTDSubHeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewTDHeadline"
+        android:layout_below="@+id/textViewTDHeadline"
+        android:layout_margin="5dp"
+        android:text="@string/blank_string"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/imageViewTD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewTDSubHeadline"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/blank_string"
+        android:src="@drawable/blank" />
+
+    <ImageButton
+        android:id="@+id/imageButtonTD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/blank_string"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+ 
+</RelativeLayout>
