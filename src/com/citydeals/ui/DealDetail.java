@@ -64,7 +64,7 @@ public class DealDetail extends Activity {
 		TextView textViewSubHeadline = (TextView) findViewById(R.id.textViewSubHeadline);
 		TextView textViewDesc = (TextView) findViewById(R.id.textViewDescription);
 		TextView textViewValid = (TextView) findViewById(R.id.textView2);
-		
+
 		Button buttonComm = (Button) findViewById(R.id.buttonComment);
 
 		// get variable from previous activity
@@ -128,29 +128,40 @@ public class DealDetail extends Activity {
 		});
 
 		updateView();
-		
+
 		buttonComm.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	CityDealsApplication application = (CityDealsApplication) getApplication();
-            	String user = application.getUser();
-            	String pw = application.getPassword();
-            	
-        		if(!user.isEmpty() && !pw.isEmpty()) {  
-        		    Intent intent = new Intent(getApplicationContext(), New_comment.class);
-        		    Deal deal = new Deal();
-        		    deal = d;
-        		    deal.setImage(null);
-        		    intent.putExtra("deal", deal);
-        		    //startActivity(intent); 
-        		    
-        		    startActivityForResult(intent,0);
-        		} else {
-        			Toast.makeText(getApplicationContext(), "Login erfolderlich", Toast.LENGTH_LONG).show();
-        		    Intent intent = new Intent(getApplicationContext(), SettingsPage.class);
-        		    startActivity(intent);    			      			
-        		}
-            	
-            }});	
+			public void onClick(View v) {
+				CityDealsApplication application = (CityDealsApplication) getApplication();
+				String user = application.getUser();
+				String pw = application.getPassword();
+				if (user != null && pw != null) {
+					if (!user.isEmpty() && !pw.isEmpty()) {
+						Intent intent = new Intent(getApplicationContext(),
+								New_comment.class);
+						Deal deal = new Deal();
+						deal = d;
+						deal.setImage(null);
+						intent.putExtra("deal", deal);
+						// startActivity(intent);
+
+						startActivityForResult(intent, 0);
+					} else {
+						Toast.makeText(getApplicationContext(),
+								"Login erfolderlich", Toast.LENGTH_LONG).show();
+						Intent intent = new Intent(getApplicationContext(),
+								SettingsPage.class);
+						startActivity(intent);
+					}
+				} else {
+					Toast.makeText(getApplicationContext(),
+							"Login erfolderlich", Toast.LENGTH_LONG).show();
+					Intent intent = new Intent(getApplicationContext(),
+							SettingsPage.class);
+					startActivity(intent);
+				}
+
+			}
+		});
 	}
 
 	private void setImageByCategory(String category, Deal d) {
@@ -244,24 +255,24 @@ public class DealDetail extends Activity {
 	}
 
 	private void updateView() {
-        Session session = Session.getActiveSession();
-        if (session.isOpened()) {
-        	share.setVisibility(View.VISIBLE);
-        	loginFacebookButton.setVisibility(View.INVISIBLE);
-        	
-                // Check for publish permissions    
-                List<String> permissions = session.getPermissions();
-                if (!isSubsetOf(PERMISSIONS, permissions)) {
-                    pendingPublishReauthorization = true;
-                    Session.NewPermissionsRequest newPermissionsRequest = new Session
-                            .NewPermissionsRequest(this, PERMISSIONS);
-                session.requestNewPublishPermissions(newPermissionsRequest);
-                }
-        } else {
-        	share.setVisibility(View.INVISIBLE);
-        	loginFacebookButton.setVisibility(View.VISIBLE);
-        }
-    }
+		Session session = Session.getActiveSession();
+		if (session.isOpened()) {
+			share.setVisibility(View.VISIBLE);
+			loginFacebookButton.setVisibility(View.INVISIBLE);
+
+			// Check for publish permissions
+			List<String> permissions = session.getPermissions();
+			if (!isSubsetOf(PERMISSIONS, permissions)) {
+				pendingPublishReauthorization = true;
+				Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(
+						this, PERMISSIONS);
+				session.requestNewPublishPermissions(newPermissionsRequest);
+			}
+		} else {
+			share.setVisibility(View.INVISIBLE);
+			loginFacebookButton.setVisibility(View.VISIBLE);
+		}
+	}
 
 	private void publishStory() {
 		Session session = Session.getActiveSession();
