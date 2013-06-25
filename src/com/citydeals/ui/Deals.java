@@ -49,7 +49,7 @@ public class Deals extends ListActivity {
 		try {
 			deals = DealService.getDealsByCity(application.getCity());
 		} catch (Exception ex) {
-			Toast.makeText(this, "Keine Deals fÃ¼r "+ application.getCity() + " gefunden",
+			Toast.makeText(this, "Keine Deals für "+ application.getCity() + " gefunden",
 					Toast.LENGTH_LONG).show();
 			Intent i = new Intent(this, StartPage.class);
 			startActivity(i);
@@ -81,12 +81,12 @@ public class Deals extends ListActivity {
 		
 		// TOPDEAL
 
-		topdeal = deals.get(1);
+		topdeal = DealService.getTopDeal(application.getCity());
 		if (topdeal != null) {
 
 			final Dialog dialog = new Dialog(context);
 			dialog.setContentView(R.layout.topdeal_dialog);
-			dialog.setTitle("Topdeal fÃ¼r " + application.getCity());
+			dialog.setTitle("Topdeal für " + application.getCity());
 
 			// opaque background
 			WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
